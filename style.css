@@ -1,6 +1,6 @@
 #mainDiv {
-    width: 500px;
-    height: 500px;
+    width: 960px;
+    height: 960px;
     background-color: bisque;
     display: flex;
     flex-wrap: wrap;
