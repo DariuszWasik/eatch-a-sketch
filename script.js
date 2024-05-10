@@ -35,11 +35,34 @@ document.body.insertBefore(btn, mainDiv)
 function sendPopup () {
     sideDimension = window.prompt("how many squares do you want (maximal 100)", 0) }
     
+    
     btn.addEventListener("click", sendPopup)
     btn.addEventListener("click", f=> {allSquares.forEach((el) => el.parentNode.removeChild(el))})
     btn.addEventListener("click", feelSquares)
+    
+    //make button that allows to randomize the hovering color
+    
+const btnRandomColor = document.createElement("button")
+btnRandomColor.innerText = "rainbow?";
+btnRandomColor.style = "font-size: 25px; padding: 20px; border: 5px solid black; background-color: silver "
+document.body.insertBefore(btnRandomColor, mainDiv)
+btnRandomColor.addEventListener("click", changeHoovering)
+function changeHoovering () {
+    allSquares = document.querySelectorAll(".sqr")
+    allSquares.forEach((el) => el.addEventListener("mouseover", f => {el.style.background= randomColor()}))}  
 
-
+function randomColor(){
+    //random number between 0 and 15
+    let randomNumber = Math.floor(Math.random()*16);
+    const hexArray = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
+    //create Hex code
+    let code = "";
+    for(let i=0; i<6; i++){
+        code += hexArray[Math.floor(Math.random()*16)]
+    }
+    //hex code starts with #
+   return `#${code}`;
+}
 
     console.log("div dimension", mainDiv.offsetWidth)
 // console.log("square dimension", square.offsetWidth)
