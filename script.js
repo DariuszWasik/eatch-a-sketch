@@ -4,6 +4,7 @@ const mainDiv = document.querySelector("#mainDiv");
 let sideDimension;
 let allSquares
 let square
+let elBox = []
 sideDimension = 16;
 
 function feelSquares () {
@@ -39,6 +40,10 @@ function sendPopup () {
     btn.addEventListener("click", sendPopup)
     btn.addEventListener("click", f=> {allSquares.forEach((el) => el.parentNode.removeChild(el))})
     btn.addEventListener("click", feelSquares)
+    // need to clean elBox array to make hoovering darker working
+    btn.addEventListener("click", f => {while(elBox.length > 0) {
+        elBox.pop();}
+    })
     
     //make button that allows to randomize the hovering color
     
@@ -50,9 +55,9 @@ btnRandomColor.addEventListener("click", changeHoovering)
 function changeHoovering () {
     allSquares = document.querySelectorAll(".sqr")
     allSquares.forEach((el) => el.addEventListener("mouseover", f => {el.style.background= randomColor()}))}  
-
-function randomColor(){
-    //random number between 0 and 15
+    
+    function randomColor(){
+        //random number between 0 and 15
     let randomNumber = Math.floor(Math.random()*16);
     const hexArray = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
     //create Hex code
@@ -64,5 +69,19 @@ function randomColor(){
    return `#${code}`;
 }
 
-    console.log("div dimension", mainDiv.offsetWidth)
-// console.log("square dimension", square.offsetWidth)
+//add button that make hoovering darker
+
+const btnDark = document.createElement("button")
+btnDark.innerText = "dark?";
+btnDark.style = "font-size: 25px; padding: 20px; border: 5px solid black; background-color: silver "
+document.body.insertBefore(btnDark, mainDiv)
+btnDark.addEventListener("click", makeItDark)
+function makeItDark () {
+allSquares = document.querySelectorAll(".sqr")
+allSquares.forEach((el) => el.addEventListener("mouseover", f => {
+    el.style.background= "black";
+    elBox.push(el);
+    for (let i=0; i<10; i++) {
+        if (elBox[i]) {elBox[i].style.opacity = `0.${i}` }
+}}))}
+
