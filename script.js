@@ -6,14 +6,15 @@ let allSquares
 let square
 let elBox = []
 sideDimension = 16;
-
+let a =1;
 function feelSquares () {
 for (let i=0; i<sideDimension*sideDimension; i++) {
     square = document.createElement("div");
     square.className = "sqr";
-    square.style.border = "1px solid black"
+    square.style.boxSizing = "border-box"
+    square.style.border = `${a}px solid black`
     // square.style.display = "flex"
-    square.style.width = `${(mainDiv.offsetWidth/sideDimension)-3}px`
+    square.style.width = `${(mainDiv.offsetWidth/sideDimension)}px`
     mainDiv.appendChild(square);
     hovering();
 }}
@@ -28,7 +29,7 @@ allSquares.forEach((el) => el.addEventListener("mouseover", f => {el.style.backg
 // add button that asks about the square numbers
 
 const btn = document.createElement("button");
-btn.innerHTML = "click me to set how many squares do you want  to have? "
+btn.innerHTML = "how many squares? "
 btn.style = "font-size: 25px; padding: 20px; border: 5px solid black; background-color: silver "
 document.body.insertBefore(btn, mainDiv)
 
