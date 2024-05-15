@@ -4,6 +4,30 @@
     background-color: bisque;
     display: flex;
     flex-wrap: wrap;
-  
+    }
+
+#divContainer {
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 960px;
+    /* background-color: aqua  ; */
+    display: flex;
+    flex-direction: column;
+    gap: 30px
     
+
 }
+
+#allButtons {
+    
+    /* background-color: cornsilk; */
+    display: flex;
+    gap: 30px;
+    justify-content: space-around;
+}
+
+#allButtons * {
+    border-radius: 12px;
+    font-weight: bold;
+}
+

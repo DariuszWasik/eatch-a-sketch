@@ -82,6 +82,7 @@ btnDark.innerText = "dark?";
 btnDark.style = "font-size: 25px; padding: 20px; border: 5px solid black; background-color: silver "
 document.body.insertBefore(btnDark, mainDiv)
 btnDark.addEventListener("click", makeItDark)
+
 function makeItDark () {
 allSquares = document.querySelectorAll(".sqr")
 allSquares.forEach((el) => el.addEventListener("mouseover", f => {
@@ -90,4 +91,14 @@ allSquares.forEach((el) => el.addEventListener("mouseover", f => {
     for (let i=0; i<10; i++) {
         if (elBox[i]) {elBox[i].style.opacity = `0.${i}` }
 }}))}
+
+//create a div container for all the content and inside it for buttons
+let  divContainer = document.createElement("div");
+divContainer.setAttribute("id", "divContainer");
+let allButtons = document.createElement("div");
+allButtons.setAttribute("id", "allButtons");
+
+allButtons.append(btn, btnRandomColor, btnDark);
+divContainer.append(allButtons, mainDiv);
+document.body.appendChild(divContainer);
 
