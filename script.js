@@ -7,6 +7,9 @@ let square
 let elBox = []
 sideDimension = 16;
 let a =1;
+
+
+
 function feelSquares () {
 for (let i=0; i<sideDimension*sideDimension; i++) {
     square = document.createElement("div");
@@ -22,6 +25,7 @@ for (let i=0; i<sideDimension*sideDimension; i++) {
 feelSquares()
 
 // add listener that changes square color while hovering
+
 function hovering (){
 allSquares = document.querySelectorAll(".sqr")
 allSquares.forEach((el) => el.addEventListener("mouseover", f => {el.style.background= "red"}))}
@@ -53,6 +57,7 @@ btnRandomColor.innerText = "rainbow?";
 btnRandomColor.style = "font-size: 25px; padding: 20px; border: 5px solid black; background-color: silver "
 document.body.insertBefore(btnRandomColor, mainDiv)
 btnRandomColor.addEventListener("click", changeHoovering)
+
 function changeHoovering () {
     allSquares = document.querySelectorAll(".sqr")
     allSquares.forEach((el) => el.addEventListener("mouseover", f => {el.style.background= randomColor()}))}  
