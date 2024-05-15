@@ -10,6 +10,22 @@ let a =1;
 
 
 
+// function feelSquares () { 
+// i = 0;
+// while (i< sideDimension*sideDimension) {
+//     square = document.createElement("div");
+//     square.className = "sqr";
+//     square.style.boxSizing = "border-box"
+//     square.style.border = `${a}px solid black`
+//     square.style.width = 100/sideDimension + "%"
+//     mainDiv.appendChild(square);
+//     i++;}
+// }
+
+function start () {
+    feelSquares ();
+    hovering()
+}
 function feelSquares () {
 for (let i=0; i<sideDimension*sideDimension; i++) {
     square = document.createElement("div");
@@ -17,21 +33,19 @@ for (let i=0; i<sideDimension*sideDimension; i++) {
     square.style.boxSizing = "border-box"
     square.style.border = `${a}px solid black`
     // square.style.display = "flex"
-    square.style.width = `${(mainDiv.offsetWidth/sideDimension)}px`
+    square.style.width = 100/sideDimension + "%"
     mainDiv.appendChild(square);
-    hovering();
 }}
 
-feelSquares()
 
 // add listener that changes square color while hovering
 
 function hovering (){
-allSquares = document.querySelectorAll(".sqr")
-allSquares.forEach((el) => el.addEventListener("mouseover", f => {el.style.background= "red"}))}
+    allSquares = document.querySelectorAll(".sqr")
+    allSquares.forEach((el) => el.addEventListener("mouseover", f => {el.style.background= "red"}))}
 
-// add button that asks about the square numbers
-
+    // add button that asks about the square numbers
+    
 const btn = document.createElement("button");
 btn.innerHTML = "how many squares? "
 btn.style = "font-size: 25px; padding: 20px; border: 5px solid black; background-color: silver "
@@ -44,7 +58,7 @@ function sendPopup () {
     
     btn.addEventListener("click", sendPopup)
     btn.addEventListener("click", f=> {allSquares.forEach((el) => el.parentNode.removeChild(el))})
-    btn.addEventListener("click", feelSquares)
+    btn.addEventListener("click", start)
     // need to clean elBox array to make hoovering darker working
     btn.addEventListener("click", f => {while(elBox.length > 0) {
         elBox.pop();}
@@ -52,24 +66,24 @@ function sendPopup () {
     
     //make button that allows to randomize the hovering color
     
-const btnRandomColor = document.createElement("button")
-btnRandomColor.innerText = "rainbow?";
-btnRandomColor.style = "font-size: 25px; padding: 20px; border: 5px solid black; background-color: silver "
-document.body.insertBefore(btnRandomColor, mainDiv)
-btnRandomColor.addEventListener("click", changeHoovering)
-
-function changeHoovering () {
-    allSquares = document.querySelectorAll(".sqr")
-    allSquares.forEach((el) => el.addEventListener("mouseover", f => {el.style.background= randomColor()}))}  
+    const btnRandomColor = document.createElement("button")
+    btnRandomColor.innerText = "rainbow?";
+    btnRandomColor.style = "font-size: 25px; padding: 20px; border: 5px solid black; background-color: silver "
+    document.body.insertBefore(btnRandomColor, mainDiv)
+    btnRandomColor.addEventListener("click", changeHoovering)
     
-    function randomColor(){
-        //random number between 0 and 15
-    let randomNumber = Math.floor(Math.random()*16);
-    const hexArray = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
-    //create Hex code
-    let code = "";
-    for(let i=0; i<6; i++){
-        code += hexArray[Math.floor(Math.random()*16)]
+    function changeHoovering () {
+        allSquares = document.querySelectorAll(".sqr")
+        allSquares.forEach((el) => el.addEventListener("mouseover", f => {el.style.background= randomColor()}))}  
+        
+        function randomColor(){
+            //random number between 0 and 15
+            let randomNumber = Math.floor(Math.random()*16);
+            const hexArray = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
+            //create Hex code
+            let code = "";
+            for(let i=0; i<6; i++){
+                code += hexArray[Math.floor(Math.random()*16)]
     }
     //hex code starts with #
    return `#${code}`;
@@ -84,17 +98,17 @@ document.body.insertBefore(btnDark, mainDiv)
 btnDark.addEventListener("click", makeItDark)
 
 function makeItDark () {
-allSquares = document.querySelectorAll(".sqr")
-allSquares.forEach((el) => el.addEventListener("mouseover", f => {
-    el.style.background= "black";
-    elBox.push(el);
-    for (let i=0; i<10; i++) {
-        if (elBox[i]) {elBox[i].style.opacity = `0.${i}` }
-}}))}
-
-//create a div container for all the content and inside it for buttons
-let  divContainer = document.createElement("div");
-divContainer.setAttribute("id", "divContainer");
+    allSquares = document.querySelectorAll(".sqr")
+    allSquares.forEach((el) => el.addEventListener("mouseover", f => {
+        el.style.background= "black";
+        elBox.push(el);
+        for (let i=0; i<10; i++) {
+            if (elBox[i]) {elBox[i].style.opacity = `0.${i}` }
+        }}))}
+        
+        //create a div container for all the content and inside it for buttons
+        let  divContainer = document.createElement("div");
+    divContainer.setAttribute("id", "divContainer");
 let allButtons = document.createElement("div");
 allButtons.setAttribute("id", "allButtons");
 
@@ -102,3 +116,5 @@ allButtons.append(btn, btnRandomColor, btnDark);
 divContainer.append(allButtons, mainDiv);
 document.body.appendChild(divContainer);
 
+
+start()
